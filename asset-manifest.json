@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/meetup-cf-tdd-app/static/css/main.2cce8147.chunk.css",
+    "main.js": "/meetup-cf-tdd-app/static/js/main.8798799f.chunk.js",
+    "main.js.map": "/meetup-cf-tdd-app/static/js/main.8798799f.chunk.js.map",
+    "runtime~main.js": "/meetup-cf-tdd-app/static/js/runtime~main.0ae094fb.js",
+    "runtime~main.js.map": "/meetup-cf-tdd-app/static/js/runtime~main.0ae094fb.js.map",
+    "static/js/2.b41502e9.chunk.js": "/meetup-cf-tdd-app/static/js/2.b41502e9.chunk.js",
+    "static/js/2.b41502e9.chunk.js.map": "/meetup-cf-tdd-app/static/js/2.b41502e9.chunk.js.map",
+    "index.html": "/meetup-cf-tdd-app/index.html",
+    "precache-manifest.19423dd151fee4d869018617b9abcd68.js": "/meetup-cf-tdd-app/precache-manifest.19423dd151fee4d869018617b9abcd68.js",
+    "service-worker.js": "/meetup-cf-tdd-app/service-worker.js",
+    "static/css/main.2cce8147.chunk.css.map": "/meetup-cf-tdd-app/static/css/main.2cce8147.chunk.css.map",
+    "static/media/logo.svg": "/meetup-cf-tdd-app/static/media/logo.5d5d9eef.svg"
+  }
+}
