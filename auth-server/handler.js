@@ -4,6 +4,7 @@ const axios = require('axios');
 
 const meetupClientId = 'j12j4mvc0gjql1p5is9iu8uib3';
 const meetupClientSecret = '3mqf089ejhk03nvikdr45702om';
+
 module.exports.getAccessToken = async event => {
   const MEETUP_OAUTH_URL =
     'https://secure.meetup.com/oauth2/access' +
