@@ -2,19 +2,43 @@
 <html lang="en">
   <body>
     <div id="container">
-      <input id="code" type="text" placeholder="code" />
-      <button id="getToken">Get Token</button>
-      <p id="result"></p>
+      <br />
+      <input id="code" type="text" placeholder="input code from redirect URI" />
+      <button id="getToken">Get Access Token</button>
+      <p id="result" style="overflow-wrap: break-word;"></p>
+      <br />
+      <input id="refreshToken" type="text" placeholder="input refresh token" />
+      <button id="getRefreshToken">Get New Access Token</button>
+      <p id="getRefreshTokenResult" style="overflow-wrap: break-word;"></p>
     </div>
 
     <script type="text/javascript">
       const getTokenElement = document.getElementById('getToken');
+      const getRefreshTokenElement = document.getElementById('getRefreshToken');
+
       getTokenElement.onclick = function() {
         const codeElement = document.getElementById('code');
         const resultElement = document.getElementById('result');
         const codeValue = codeElement.value;
 
-        // Replace this by your function endpoint
+        const lambdaURL =
+          'https://w30vudwd4f.execute-api.us-east-1.amazonaws.com/dev/api/token/' +
+          codeValue;
+
+        fetch(lambdaURL)
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(json) {
+            resultElement.innerText = JSON.stringify(json);
+          });
+      };
+
+      getRefreshTokenElement.onclick = function() {
+        const codeElement = document.getElementById('refreshToken');
+        const resultElement = document.getElementById('getRefreshTokenResult');
+        const codeValue = codeElement.value;
+
         const lambdaURL =
           'https://w30vudwd4f.execute-api.us-east-1.amazonaws.com/dev/api/token/' +
           codeValue;
