@@ -12,3 +12,19 @@ In terminal:
 
 References:
 - https://serverless-stack.com/chapters/load-secrets-from-env-yml.html
+
+# Key features of app:
+## Feature 1: Filter Events by City
+1. It must be able to filter events by city.
+2. It must be able to show/hide an event details.
+3. It must specify the number of events.
+
+4. It must be available offline.
+5. It must display a chart showing the number of upcoming events by date.
+
+6. It must add an app shortcut to the user’s home screen. (Won’t be handled by our app, rather, the user’s OS)
+
+By default, the `yarn test` command will tell Jest to run your tests in “watch” mode.
+
+Reference:
+Enzyme documentation on the shallow wrapper API: https://airbnb.io/enzyme/docs/api/shallow.html#shallowwrapper-api
