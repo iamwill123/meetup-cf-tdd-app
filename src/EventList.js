@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
+import { Event } from './Event';
 
 class EventList extends Component {
+  state = {
+    events: []
+  };
   render() {
-    return <>I am an events list</>;
+    const { events } = this.state;
+    return (
+      <ul className="EventList">
+        {events.map(event => (
+          <li key={event.id}>
+            <Event event={event} />
+          </li>
+        ))}
+      </ul>
+    );
   }
 }
 
