@@ -1,5 +1,5 @@
 # Tutor / Mentor CF version
-
+Check out [CareerFoundry](https://careerfoundry.com/) for more information on this lesson.
 ## To test serverless function locally
 
 Example:
@@ -28,3 +28,4 @@ By default, the `yarn test` command will tell Jest to run your tests in “watch
 
 Reference:
 Enzyme documentation on the shallow wrapper API: https://airbnb.io/enzyme/docs/api/shallow.html#shallowwrapper-api
+https://www.meetup.com/meetup_api/docs/find/locations/

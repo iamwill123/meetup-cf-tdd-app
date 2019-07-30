@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 // import your new EventList component into your test so that you’re able to find it via the shallow rendering API
-import EventList from '../EventList';
-import Event from '../Event';
+import EventList from '../components/EventList';
+import Event from '../components/Event';
 
 // create a new group, or “scope” for test
 describe('<EventList /> component', () => {
