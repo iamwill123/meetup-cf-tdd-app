@@ -29,3 +29,6 @@ By default, the `yarn test` command will tell Jest to run your tests in “watch
 Reference:
 Enzyme documentation on the shallow wrapper API: https://airbnb.io/enzyme/docs/api/shallow.html#shallowwrapper-api
 https://www.meetup.com/meetup_api/docs/find/locations/
+
+Enable CORS through AWS:
+https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-cors.html
