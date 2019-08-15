@@ -12,11 +12,12 @@ Example:
 
 In terminal:
 
+- any updates we make to our auth-server, we must run: `serverless deploy`
 - for getAccessToken(), run:
-  `serverless invoke local --function getAccessToken --data '{"pathParameters": { "code": "6af9241cc444c7803141b2974aa0a79f" }}'`
+  `serverless invoke local --function getAccessToken --data '{"pathParameters": { "code": "346606ee94eb4970a171d872091d4826" }}'`
 
 - for getRefreshAccessToken() run:
-  `serverless invoke local --function getRefreshAccessToken --data '{"pathParameters": { "code": "11e160a99646020cf5f274f84bec3018" }}'`
+  `serverless invoke local --function getRefreshAccessToken --data '{"pathParameters": { "code": "e34d8a76340fdfe4a94ff8a021073f1c" }}'`
 
 References:
 
@@ -46,5 +47,4 @@ https://www.meetup.com/meetup_api/docs/find/locations/
 Enable CORS through AWS:
 https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-cors.html
 
-Testing Resources:
-https://airbnb.io/enzyme/docs/api/ShallowWrapper/
+Testing Resources: https://airbnb.io/enzyme/docs/api/ShallowWrapper/
