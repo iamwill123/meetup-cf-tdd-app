@@ -40,6 +40,9 @@ References:
 By default, the `yarn test` command will tell Jest to run your tests in “watch”
 mode.
 
+![TDD process diagram](./image-resources/TDD_ProcessDiagram.png)
+
+![SHALLOW RENDERING vs. FULL RENDERING](./image-resources/shallowVsFullEnzymeTesting.png)
 Reference: Enzyme documentation on the shallow wrapper API:
 https://airbnb.io/enzyme/docs/api/shallow.html#shallowwrapper-api
 https://www.meetup.com/meetup_api/docs/find/locations/

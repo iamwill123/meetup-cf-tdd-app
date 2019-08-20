@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { suggestionsData } from '../mock-data/MockData';
+import { getSuggestionsData } from '../api/mock-data/MockData';
 
 class CitySearch extends Component {
   state = {
@@ -8,8 +8,11 @@ class CitySearch extends Component {
   };
 
   handleInputChange = event => {
-    const value = event.target.value;
-    this.setState({ query: value });
+    const query = event.target.value;
+    this.setState({ query });
+    getSuggestionsData(query).then(suggestions => {
+      this.setState({ suggestions });
+    });
   };
 
   handleItemClick = item => {
@@ -20,6 +23,8 @@ class CitySearch extends Component {
 
   render() {
     const { query, suggestions } = this.state;
+    if (!suggestions) return 'loading suggestions...';
+
     return (
       <div className="CitySearch">
         <input

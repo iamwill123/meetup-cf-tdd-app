@@ -1,8 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import CitySearch from '../components/CitySearch';
-import { suggestionsData } from '../mock-data/MockData';
+import { returnedSuggestionsData } from '../api/mock-data/MockData';
 
+// unit test
 describe('<CitySearch /> component', () => {
   let CitySearchWrapper;
   beforeAll(() => {
@@ -44,7 +45,7 @@ describe('<CitySearch /> component', () => {
 
   test('click on suggestion should change query state', () => {
     CitySearchWrapper.setState({
-      suggestions: suggestionsData
+      suggestions: returnedSuggestionsData
     });
 
     CitySearchWrapper.find('.suggestions li')
@@ -53,3 +54,22 @@ describe('<CitySearch /> component', () => {
     expect(CitySearchWrapper.state('query')).toBe('Brooklyn, New York, USA');
   });
 });
+
+// integration test
+describe('<CitySearch /> integration', () => {
+  test('should get a list of cities when user searches for Brooklyn', async () => {
+    const CitySearchWrapper = shallow(<CitySearch />);
+    CitySearchWrapper.find('.city').simulate('change', {
+      target: { value: 'Brooklyn' }
+    });
+    await CitySearchWrapper.update();
+    // rather than the toBe() function, a new toEqual() function is being used to run your comparison. This is because the values being compared are objects.
+    expect(CitySearchWrapper.state('suggestions')).toEqual(
+      returnedSuggestionsData
+    );
+  });
+});
+
+// Notes:
+// toBe(): comparing primitive data types,
+// toEqual(): compare complex data types such as objects. This is because the toEqual() function is designed to recursively check every field of an object or array.
