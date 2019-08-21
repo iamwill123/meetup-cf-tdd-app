@@ -18,7 +18,7 @@ export class Event extends Component {
     if (!event) return <div>Loading...</div>;
 
     return (
-      <div className="event">
+      <div className="Event">
         <div className="event-name">{event.name_string}</div>
         <button className="detail-btn" onClick={this.handleItemClick}>
           Details

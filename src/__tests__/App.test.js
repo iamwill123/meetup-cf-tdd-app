@@ -6,6 +6,7 @@ import EventList from '../components/EventList';
 
 import CitySearch from '../components/CitySearch';
 import NumberOfEvents from '../components/NumberOfEvents';
+import { mockEvents } from '../api/mock-data/mock-events';
 
 // Basic list of functions we can use:
 // find(selector): locates every node that matches the selector (a CSS selector, a component constructor, etc). It returns another wrapper surrounding any nodes it finds. You can then call additional functions on this new wrapper.
@@ -52,6 +53,22 @@ describe('<App /> integration', () => {
     // ref-3: Jest functions:
     expect(AppWrapper.instance().updateEvents).toHaveBeenCalledTimes(1);
     expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith(1.1, 1.2);
+    AppWrapper.unmount();
+  });
+
+  test('should change state after get list of events', async () => {
+    const AppWrapper = shallow(<App />);
+    AppWrapper.instance().updateEvents(1.1, 1.2);
+    await AppWrapper.update();
+    expect(AppWrapper.state('events')).toEqual(mockEvents.events);
+  });
+
+  test('should render correct list of events', () => {
+    const AppWrapper = mount(<App />);
+    AppWrapper.setState({
+      events: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
+    });
+    expect(AppWrapper.find('.Event')).toHaveLength(4);
     AppWrapper.unmount();
   });
 });
