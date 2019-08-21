@@ -17,7 +17,8 @@ class CitySearch extends Component {
 
   handleItemClicked = (value, lat, lon) => {
     this.setState({
-      query: value
+      query: value,
+      suggestions: []
     });
     this.props.updateEvents(lat, lon);
   };
@@ -31,7 +32,7 @@ class CitySearch extends Component {
         <input
           type="text"
           className="city"
-          placeholder='City'
+          placeholder="City"
           value={query}
           onChange={this.handleInputChange}
         />

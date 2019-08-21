@@ -43,15 +43,28 @@ describe('<CitySearch /> component', () => {
     }
   });
 
-  test('click on suggestion should change query state', () => {
+  // test('click on suggestion should change query state', () => {
+  //   CitySearchWrapper.setState({
+  //     suggestions: returnedSuggestionsData
+  //   });
+
+  //   CitySearchWrapper.find('.suggestions li')
+  //     .at(0)
+  //     .simulate('click');
+  //   expect(CitySearchWrapper.state('query')).toBe('Brooklyn, New York, USA');
+  // });
+
+  test('click on suggestion should change query state and empty the list of suggestions', () => {
     CitySearchWrapper.setState({
       suggestions: returnedSuggestionsData
     });
+    expect(CitySearchWrapper.find('.suggestions li')).toHaveLength(10);
 
     CitySearchWrapper.find('.suggestions li')
       .at(0)
       .simulate('click');
     expect(CitySearchWrapper.state('query')).toBe('Brooklyn, New York, USA');
+    expect(CitySearchWrapper.find('.suggestions li')).toHaveLength(0);
   });
 });
 
