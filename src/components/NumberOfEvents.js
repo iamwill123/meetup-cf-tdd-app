@@ -13,13 +13,14 @@ class NumberOfEvents extends Component {
 
   render() {
     const { query } = this.state;
+    const { events } = this.props;
     return (
       <div className="NumberOfEvents">
         Show{' '}
         <input
           type="text"
-          className="numberOfEvents"
-          value={query}
+          className="number-of-events"
+          value={events.length}
           onChange={this.handleInputChange}
         />{' '}
         Events

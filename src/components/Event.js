@@ -19,14 +19,18 @@ export class Event extends Component {
 
     return (
       <div className="Event">
-        <div className="event-name">{event.name_string}</div>
-        <button className="detail-btn" onClick={this.handleItemClick}>
-          Details
+        <div className="name">Event: {event.name}</div>
+        <button className="details-btn" onClick={this.handleItemClick}>
+          {!show ? 'Details' : 'Hide'}
         </button>
         {show && (
           <div className="detail-info">
-            <div className="event-city">{event.city}</div>
-            <div className="event-country">{event.country}</div>
+            <div className="event-yes_rsvp_count">
+              Venue: {event.venue.name}
+            </div>
+            <div className="event-local_date">Date: {event.local_date}</div>
+            <div className="going">RSVP: {event.yes_rsvp_count}</div>
+            <div className="description">Desc: {event.description}</div>
           </div>
         )}
       </div>

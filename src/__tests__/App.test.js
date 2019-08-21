@@ -7,6 +7,7 @@ import EventList from '../components/EventList';
 import CitySearch from '../components/CitySearch';
 import NumberOfEvents from '../components/NumberOfEvents';
 import { mockEvents } from '../api/mock-data/mock-events';
+import { Event } from '../components/Event';
 
 // Basic list of functions we can use:
 // find(selector): locates every node that matches the selector (a CSS selector, a component constructor, etc). It returns another wrapper surrounding any nodes it finds. You can then call additional functions on this new wrapper.
@@ -68,7 +69,7 @@ describe('<App /> integration', () => {
     AppWrapper.setState({
       events: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
     });
-    expect(AppWrapper.find('.Event')).toHaveLength(4);
+    expect(AppWrapper.find(Event)).toHaveLength(4);
     AppWrapper.unmount();
   });
 });
