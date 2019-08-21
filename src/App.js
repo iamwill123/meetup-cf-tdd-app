@@ -5,10 +5,13 @@ import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
 
 class App extends Component {
+  updateEvents = events => {
+    console.log(events);
+  };
   render() {
     return (
       <div className="App">
-        <CitySearch />
+        <CitySearch updateEvents={this.updateEvents} />
         <EventList />
         <NumberOfEvents />
       </div>

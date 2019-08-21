@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getSuggestionsData } from '../api/mock-data/MockData';
+import { getSuggestionsData } from '../api/mock-data/mock-locations';
 
 class CitySearch extends Component {
   state = {
@@ -15,10 +15,11 @@ class CitySearch extends Component {
     });
   };
 
-  handleItemClick = item => {
+  handleItemClicked = (value, lat, lon) => {
     this.setState({
-      query: item
+      query: value
     });
+    this.props.updateEvents(lat, lon);
   };
 
   render() {
@@ -34,14 +35,17 @@ class CitySearch extends Component {
           onChange={this.handleInputChange}
         />
         <ul className="suggestions">
-          {suggestions.map(item => (
-            <li
-              key={item.zip}
-              onClick={() => this.handleItemClick(item.name_string)}
-            >
-              {item.name_string}
-            </li>
-          ))}
+          {suggestions.map(item => {
+            const { name_string, zip, lat, lon } = item;
+            return (
+              <li
+                key={zip}
+                onClick={() => this.handleItemClicked(name_string, lat, lon)}
+              >
+                {name_string}
+              </li>
+            );
+          })}
         </ul>
       </div>
     );

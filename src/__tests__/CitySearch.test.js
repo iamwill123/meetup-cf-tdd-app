@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import CitySearch from '../components/CitySearch';
-import { returnedSuggestionsData } from '../api/mock-data/MockData';
+import { returnedSuggestionsData } from '../api/mock-data/mock-locations';
 
 // unit test
 describe('<CitySearch /> component', () => {
   let CitySearchWrapper;
   beforeAll(() => {
-    CitySearchWrapper = shallow(<CitySearch />);
+    CitySearchWrapper = shallow(<CitySearch updateEvents={() => {}} />);
   });
 
   test('should render text input', () => {

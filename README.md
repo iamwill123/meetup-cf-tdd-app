@@ -40,9 +40,18 @@ References:
 By default, the `yarn test` command will tell Jest to run your tests in “watch”
 mode.
 
+## TDD process diagram
+
 ![TDD process diagram](./image-resources/TDD_ProcessDiagram.png)
 
+## SHALLOW RENDERING vs. FULL RENDERING
+
 ![SHALLOW RENDERING vs. FULL RENDERING](./image-resources/shallowVsFullEnzymeTesting.png)
+
+Meetup API refs:
+- Upcoming events: https://secure.meetup.com/meetup_api/console/?path=/find/upcoming_events
+- Test (lat/lon): https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public&lon=-73.99&page=20&lat=40.7
+
 Reference: Enzyme documentation on the shallow wrapper API:
 https://airbnb.io/enzyme/docs/api/shallow.html#shallowwrapper-api
 https://www.meetup.com/meetup_api/docs/find/locations/
@@ -50,4 +59,11 @@ https://www.meetup.com/meetup_api/docs/find/locations/
 Enable CORS through AWS:
 https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-cors.html
 
-Testing Resources: https://airbnb.io/enzyme/docs/api/ShallowWrapper/
+Testing Resources:
+https://github.com/airbnb/enzyme/tree/master/docs/apihttps://airbnb.io/enzyme/docs/api/ShallowWrapper/
+
+JSON to JS object:
+https://json-to-js.com
+
+Jest mocks:
+https://medium.com/@rickhanlonii/understanding-jest-mocks-f0046c68e53c

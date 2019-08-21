@@ -1,11 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import App from '../App';
 // import your new EventList component into your test so that you’re able to find it via the shallow rendering API
 import EventList from '../components/EventList';
 
 import CitySearch from '../components/CitySearch';
-import Event from '../components/Event';
 import NumberOfEvents from '../components/NumberOfEvents';
 
 // Basic list of functions we can use:
@@ -19,6 +18,7 @@ import NumberOfEvents from '../components/NumberOfEvents';
 // simulate(eventName[, object]): simulates an event on the root node of the wrapper. (object represents the object you want to pass through the event handlers).
 
 // create a new group, or “scope” for test
+// unit test
 describe('<App /> component', () => {
   let AppWrapper;
 
@@ -38,3 +38,29 @@ describe('<App /> component', () => {
     expect(AppWrapper.find(NumberOfEvents)).toHaveLength(1);
   });
 });
+
+// integration test
+describe('<App /> integration', () => {
+  test('should get list of events after user selects a city', async () => {
+    const AppWrapper = mount(<App />);
+    // ref-1: updateEvents & jest.fn()
+    AppWrapper.instance().updateEvents = jest.fn();
+    // ref-2: forceUpdate()
+    AppWrapper.instance().forceUpdate();
+    const CitySearchWrapper = AppWrapper.find(CitySearch);
+    CitySearchWrapper.instance().handleItemClicked('value', 1.1, 1.2);
+    // ref-3: Jest functions:
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledTimes(1);
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith(1.1, 1.2);
+    AppWrapper.unmount();
+  });
+});
+
+// ref-1
+// In order to test a function, you need to mock it. In other words, you tell Jest to execute the function on the component so you can see the results. This is handled by the function jest.fn(), which you can see has been set to the updateEvents() function, as that’s the function you want to mock.
+
+// ref-2
+// https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md#update--shallowwrapper
+
+// ref-3
+// https://jest-bot.github.io/jest/docs/expect.html
