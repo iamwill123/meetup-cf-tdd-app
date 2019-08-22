@@ -20,7 +20,7 @@ class NumberOfEvents extends Component {
         <input
           type="text"
           className="number-of-events"
-          value={events.length}
+          value={events.length || query}
           onChange={this.handleInputChange}
         />{' '}
         Events
