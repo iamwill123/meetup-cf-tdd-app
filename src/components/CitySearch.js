@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getSuggestionsData } from '../api/mock-data/mock-locations';
+import { getSuggestionsData } from '../api/api';
 
 class CitySearch extends Component {
   state = {

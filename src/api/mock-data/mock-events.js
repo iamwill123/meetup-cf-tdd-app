@@ -903,7 +903,7 @@ const mockEvents = {
   ]
 };
 
-const getEvents = async (lat, lon) => {
-  return mockEvents.events;
-};
-export { getEvents, mockEvents };
+// const getEvents = async (lat, lon) => {
+//   return mockEvents.events;
+// };
+export { mockEvents };
