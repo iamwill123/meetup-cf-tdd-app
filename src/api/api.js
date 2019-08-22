@@ -2,7 +2,38 @@ import axios from 'axios';
 import { returnedSuggestionsData } from './mock-data/mock-locations';
 import { mockEvents } from './mock-data/mock-events';
 
-const getAccessToken = () => {
+async function getOrRenewAccessToken(type, key) {
+  try {
+    let url;
+    if (type === 'get') {
+      // Lambda endpoint to get token by code
+      url =
+        'https://w30vudwd4f.execute-api.us-east-1.amazonaws.com/dev/api/token/' +
+        key;
+    } else if (type === 'renew') {
+      // Lambda endpoint to get token by refresh_token
+      url =
+        'https://w30vudwd4f.execute-api.us-east-1.amazonaws.com/dev/api/refresh/' +
+        key;
+    }
+
+    // Use Axios to make a GET request to the endpoint
+
+    const tokenInfo = await axios.get(url);
+
+    // Save tokens to localStorage together with a timestamp
+    localStorage.setItem('access_token', tokenInfo.data.access_token);
+    localStorage.setItem('refresh_token', tokenInfo.data.refresh_token);
+    localStorage.setItem('last_saved_time', Date.now());
+
+    // Return the access_token
+    return tokenInfo.data.access_token;
+  } catch (error) {
+    console.log('TCL: getOrRenewAccessToken -> error', error);
+  }
+}
+
+async function getAccessToken() {
   const accessToken = localStorage.getItem('access_token');
   console.log('TCL: getAccessToken -> accessToken', accessToken);
 
@@ -18,34 +49,16 @@ const getAccessToken = () => {
     return getOrRenewAccessToken('get', code);
   }
 
-  return accessToken;
+  const lastSavedTime = localStorage.getItem('last_saved_time');
 
-  async function getOrRenewAccessToken(type, key) {
-    let url;
-    if (type === 'get') {
-      // Lambda endpoint to get token by code
-      url =
-        'https://w30vudwd4f.execute-api.us-east-1.amazonaws.com/dev/api/token/' +
-        key;
-    } else if (type === 'renew') {
-      // Lambda endpoint to get token by refresh_token
-      url =
-        'https://w30vudwd4f.execute-api.us-east-1.amazonaws.com/dev/api/refresh/' +
-        key;
-    }
-
-    // Use Axios to make a GET request to the endpoint
-    const tokenInfo = await axios.get(url);
-
-    // Save tokens to localStorage together with a timestamp
-    localStorage.setItem('access_token', tokenInfo.data.access_token);
-    localStorage.setItem('refresh_token', tokenInfo.data.refresh_token);
-    localStorage.setItem('last_saved_time', Date.now());
-
-    // Return the access_token
-    return tokenInfo.data.access_token;
+  if (accessToken && Date.now() - lastSavedTime < 3600000) {
+    // The token is valid, return the token and end the function
+    return accessToken;
   }
-};
+  // If the access_token is expired, we try to renew it by using refresh_token
+  const refreshToken = localStorage.getItem('refresh_token');
+  return getOrRenewAccessToken('renew', refreshToken);
+}
 
 const getSuggestionsData = async query => {
   console.log('TCL: getSuggestionsData');
@@ -83,8 +96,10 @@ const getEvents = async (lat, lon) => {
       url += '&lat=' + lat + '&lon=' + lon;
     }
     const result = await axios.get(url);
-    return result.data.events;
+    const events = result.data.events;
+    return events;
   }
+  return [];
 };
 
 export { getSuggestionsData, getEvents };
