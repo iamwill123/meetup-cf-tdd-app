@@ -43,7 +43,7 @@ async function getAccessToken() {
 
     if (!code) {
       window.location.href =
-        'https://secure.meetup.com/oauth2/authorize?client_id=j12j4mvc0gjql1p5is9iu8uib3&response_type=code&redirect_uri=http://iamwill123.github.io/meetup-cf-tdd-app';
+        'https://secure.meetup.com/oauth2/authorize?client_id=j12j4mvc0gjql1p5is9iu8uib3&response_type=code&redirect_uri=http://iamwill123.github.io/meetup-cf-tdd-app/';
       return null;
     }
     return getOrRenewAccessToken('get', code);
@@ -74,7 +74,11 @@ const getSuggestionsData = async query => {
       query +
       '&access_token=' +
       token;
-    const result = await axios.get(url);
+    const result = await axios.get(url, {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    });
     return result.data;
   }
   return [];
@@ -95,7 +99,11 @@ const getEvents = async (lat, lon) => {
     if (lat && lon) {
       url += '&lat=' + lat + '&lon=' + lon;
     }
-    const result = await axios.get(url);
+    const result = await axios.get(url, {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    });
     const events = result.data.events;
     return events;
   }
