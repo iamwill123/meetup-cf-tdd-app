@@ -2,32 +2,35 @@ import axios from 'axios';
 import { returnedSuggestionsData } from './mock-data/mock-locations';
 import { mockEvents } from './mock-data/mock-events';
 
+const tokenURL =
+  'https://w30vudwd4f.execute-api.us-east-1.amazonaws.com/dev/api/token/';
+const renewURL =
+  'https://w30vudwd4f.execute-api.us-east-1.amazonaws.com/dev/api/refresh/';
+
 async function getOrRenewAccessToken(type, key) {
+  let url;
   try {
-    let url;
     if (type === 'get') {
       // Lambda endpoint to get token by code
-      url =
-        'https://w30vudwd4f.execute-api.us-east-1.amazonaws.com/dev/api/token/' +
-        key;
+      url = tokenURL + key;
     } else if (type === 'renew') {
       // Lambda endpoint to get token by refresh_token
-      url =
-        'https://w30vudwd4f.execute-api.us-east-1.amazonaws.com/dev/api/refresh/' +
-        key;
+      url = renewURL + key;
     }
-
     // Use Axios to make a GET request to the endpoint
-
     const tokenInfo = await axios.get(url);
+    console.log('TCL: getOrRenewAccessToken -> tokenInfo', tokenInfo);
+
+    let accessToken = tokenInfo.data.access_token;
+    let refreshToken = tokenInfo.data.refresh_token;
 
     // Save tokens to localStorage together with a timestamp
-    localStorage.setItem('access_token', tokenInfo.data.access_token);
-    localStorage.setItem('refresh_token', tokenInfo.data.refresh_token);
-    localStorage.setItem('last_saved_time', Date.now());
+    localStorage.setItem('access_token', accessToken);
+    localStorage.setItem('refresh_token', refreshToken);
+    localStorage.setItem('last_saved_time', Date.now()); // returns milliseconds
 
     // Return the access_token
-    return tokenInfo.data.access_token;
+    return accessToken;
   } catch (error) {
     console.log('TCL: getOrRenewAccessToken -> error', error);
   }
