@@ -5,6 +5,10 @@ import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
 import { getEvents } from './api/api';
 
+// FEATURE 1: FILTER EVENTS BY CITY
+// Scenario 1: By default, when user hasn’t searched for a city, show upcoming events based on the user’s location.
+// Scenario 2: User should see a list of suggestions when they search for a city.
+// Scenario 3: User can select a city from the suggested list.
 class App extends Component {
   state = {
     events: [],

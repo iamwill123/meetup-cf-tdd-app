@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { getSuggestionsData } from '../api/api';
 
+// FEATURE 1: FILTER EVENTS BY CITY
+// Scenario 1: By default, when user hasn’t searched for a city, show upcoming events based on the user’s location.
+// Scenario 2: User should see a list of suggestions when they search for a city.
+// Scenario 3: User can select a city from the suggested list.
 class CitySearch extends Component {
   state = {
     query: '',
