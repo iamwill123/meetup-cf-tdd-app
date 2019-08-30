@@ -38,33 +38,35 @@ async function getOrRenewAccessToken(type, key) {
 
 async function getAccessToken() {
   const accessToken = localStorage.getItem('access_token');
-  console.log('TCL: getAccessToken -> accessToken', accessToken);
+  try {
+    if (!accessToken) {
+      const searchParams = new URLSearchParams(window.location.search);
+      const code = searchParams.get('code');
 
-  if (!accessToken) {
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get('code');
-
-    if (!code) {
-      window.location.href =
-        'https://secure.meetup.com/oauth2/authorize?client_id=j12j4mvc0gjql1p5is9iu8uib3&response_type=code&redirect_uri=http://iamwill123.github.io/meetup-cf-tdd-app/';
-      return null;
+      if (!code) {
+        window.location.href =
+          'https://secure.meetup.com/oauth2/authorize?client_id=j12j4mvc0gjql1p5is9iu8uib3&response_type=code&redirect_uri=https://iamwill123.github.io/meetup-cf-tdd-app/';
+        return null;
+      }
+      return await getOrRenewAccessToken('get', code);
     }
-    return getOrRenewAccessToken('get', code);
-  }
 
-  const lastSavedTime = localStorage.getItem('last_saved_time');
+    const lastSavedTime = localStorage.getItem('last_saved_time');
 
-  if (accessToken && Date.now() - lastSavedTime < 3600000) {
-    // The token is valid, return the token and end the function
-    return accessToken;
+    // 3600000 ms = to 1 hour
+    if (accessToken && Date.now() - lastSavedTime < 3600000) {
+      // The token is valid, return the token and end the function
+      return accessToken;
+    }
+    // If the access_token is expired, we try to renew it by using refresh_token
+    const refreshToken = localStorage.getItem('refresh_token');
+    return await getOrRenewAccessToken('renew', refreshToken);
+  } catch (error) {
+    console.log('TCL: getAccessToken -> error', error);
   }
-  // If the access_token is expired, we try to renew it by using refresh_token
-  const refreshToken = localStorage.getItem('refresh_token');
-  return getOrRenewAccessToken('renew', refreshToken);
 }
 
 const getSuggestionsData = async query => {
-  console.log('TCL: getSuggestionsData');
   if (window.location.href.startsWith('http://localhost')) {
     return returnedSuggestionsData;
   }
@@ -77,22 +79,21 @@ const getSuggestionsData = async query => {
       query +
       '&access_token=' +
       token;
-    const result = await axios.get(url, {
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      }
-    });
-    return result.data;
+    const result = await axios.get(url);
+    const suggestions = result.data;
+
+    return suggestions;
   }
   return [];
 };
 
 const getEvents = async (lat, lon) => {
-  console.log('TCL: getEvents -> getEvents');
   if (window.location.href.startsWith('http://localhost')) {
     return mockEvents.events;
   }
+
   const token = await getAccessToken();
+
   if (token) {
     let url =
       'https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public' +
@@ -102,12 +103,9 @@ const getEvents = async (lat, lon) => {
     if (lat && lon) {
       url += '&lat=' + lat + '&lon=' + lon;
     }
-    const result = await axios.get(url, {
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      }
-    });
+    const result = await axios.get(url);
     const events = result.data.events;
+
     return events;
   }
   return [];
