@@ -4,16 +4,14 @@ import Event from './Event';
 class EventList extends Component {
   render() {
     const { events } = this.props;
-    if (!events) return <div>Loading...</div>;
+    if (!events || events.length === 0) return <div>Loading...</div>;
     return (
       <ul className="EventList">
-        {events
-          ? events.map(event => (
-              <li key={event.lat || event.id}>
-                <Event event={event} />
-              </li>
-            ))
-          : 'Loading events...'}
+        {events.map(event => (
+          <li key={event.lat || event.id}>
+            <Event event={event} />
+          </li>
+        ))}
       </ul>
     );
   }
