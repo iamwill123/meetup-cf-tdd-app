@@ -13,7 +13,7 @@ module.exports.getAccessToken = async event => {
     '&client_secret=' +
     meetupClientSecret +
     '&grant_type=authorization_code' +
-    '&redirect_uri=http://iamwill123.github.io/meetup-cf-tdd-app' +
+    '&redirect_uri=https://iamwill123.github.io/meetup-cf-tdd-app' +
     '&code=' +
     event.pathParameters.code;
 
