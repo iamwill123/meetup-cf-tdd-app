@@ -13,6 +13,10 @@ class App extends Component {
     page: null
   };
 
+  componentDidMount() {
+    this.updateEvents();
+  }
+
   updateEvents = (lat, lon, page) => {
     // We use state to store value of lat, lon, page if user has changed it.
     if (lat && lon) {
