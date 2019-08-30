@@ -30,7 +30,11 @@ export class Event extends Component {
             </div>
             <div className="event-local_date">Date: {event.local_date}</div>
             <div className="going">RSVP: {event.yes_rsvp_count}</div>
-            <div className="description">Desc: {event.description}</div>
+            <div
+              className="description"
+              dangerouslySetInnerHTML={{ __html: event.description }}
+            />
+            >
           </div>
         )}
       </div>
