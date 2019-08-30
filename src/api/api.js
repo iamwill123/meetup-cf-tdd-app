@@ -45,7 +45,7 @@ async function getAccessToken() {
 
       if (!code) {
         window.location.href =
-          'https://secure.meetup.com/oauth2/authorize?client_id=j12j4mvc0gjql1p5is9iu8uib3&response_type=code&redirect_uri=https://iamwill123.github.io/meetup-cf-tdd-app/';
+          'https://secure.meetup.com/oauth2/authorize?client_id=j12j4mvc0gjql1p5is9iu8uib3&response_type=code&redirect_uri=https://iamwill123.github.io/meetup-cf-tdd-app';
         return null;
       }
       return await getOrRenewAccessToken('get', code);
@@ -66,7 +66,7 @@ async function getAccessToken() {
   }
 }
 
-const getSuggestionsData = async query => {
+async function getSuggestionsData(query) {
   if (window.location.href.startsWith('http://localhost')) {
     return returnedSuggestionsData;
   }
@@ -85,9 +85,9 @@ const getSuggestionsData = async query => {
     return suggestions;
   }
   return [];
-};
+}
 
-const getEvents = async (lat, lon) => {
+async function getEvents(lat, lon) {
   if (window.location.href.startsWith('http://localhost')) {
     return mockEvents.events;
   }
@@ -109,6 +109,6 @@ const getEvents = async (lat, lon) => {
     return events;
   }
   return [];
-};
+}
 
 export { getSuggestionsData, getEvents };
