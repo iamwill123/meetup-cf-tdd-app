@@ -57,29 +57,50 @@ defineFeature(feature, test => {
     );
   });
 
+  // Scenario 3
   test('User can select a city from the suggested list', ({
     given,
     and,
     when,
     then
   }) => {
-    given('user was typing "Brooklyn" in the city textbox', () => {});
+    let AppWrapper;
+    given('user was typing "Brooklyn" in the city textbox', () => {
+      AppWrapper = mount(<App />);
+      AppWrapper.find('.city').simulate('change', {
+        target: { value: 'Brooklyn' }
+      });
+    });
 
-    and('the list of suggested cities is showing', () => {});
+    and('the list of suggested cities is showing', () => {
+      AppWrapper.update();
+      expect(AppWrapper.find('.suggestions li')).toHaveLength(10);
+    });
 
     when(
-      'the user selects a city (e.g., "Brooklyn, New York") from the list',
-      () => {}
+      'the user selects a city (e.g., "Brooklyn, New York, USA") from the list',
+      () => {
+        AppWrapper.find('.suggestions li')
+          .at(0)
+          .simulate('click');
+      }
     );
 
     then(
-      'their city should be changed to that city (i.e., "Brooklyn, New York")',
-      () => {}
+      'their city should be changed to that city (i.e., "Brooklyn, New York, USA")',
+      () => {
+        const CitySearchWrapper = AppWrapper.find(CitySearch);
+        expect(CitySearchWrapper.state('query')).toBe('Brooklyn, New York, USA');
+      }
     );
 
     and(
       'the user should receive a list of upcoming events in that city',
-      () => {}
+      () => {
+        expect(AppWrapper.find('.Event')).toHaveLength(
+          mockEvents.events.length
+        );
+      }
     );
   });
 });

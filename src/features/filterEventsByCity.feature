@@ -13,6 +13,6 @@ Feature: Filter events by city
   Scenario: User can select a city from the suggested list
     Given user was typing "Brooklyn" in the city textbox
     And the list of suggested cities is showing
-    When the user selects a city (e.g., "Brooklyn, New York") from the list
-    Then their city should be changed to that city (i.e., "Brooklyn, New York")
+    When the user selects a city (e.g., "Brooklyn, New York, USA") from the list
+    Then their city should be changed to that city (i.e., "Brooklyn, New York, USA")
     And the user should receive a list of upcoming events in that city
