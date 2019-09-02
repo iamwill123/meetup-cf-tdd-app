@@ -52,9 +52,12 @@ describe('<NumberOfEvents /> component', () => {
     visibility: 'public',
     member_pay_fee: false
   };
+  const updateEvents = () => ({});
 
   beforeAll(() => {
-    NumberOfEventsWrapper = shallow(<NumberOfEvents events={sampleEvents} />);
+    NumberOfEventsWrapper = shallow(
+      <NumberOfEvents events={sampleEvents} updateEvents={updateEvents} />
+    );
   });
 
   test('should render text input', () => {
@@ -63,13 +66,17 @@ describe('<NumberOfEvents /> component', () => {
 
   test('should render text input correctly', () => {
     const number = NumberOfEventsWrapper.state('number');
-    expect(NumberOfEventsWrapper.find('.number-of-events').prop('value')).toBe(number);
+    expect(NumberOfEventsWrapper.find('.number-of-events').prop('value')).toBe(
+      number
+    );
   });
 
   test('should change state when text input changes', () => {
     const eventObject = { target: { value: '23' } };
-    NumberOfEventsWrapper.find('.number-of-events').simulate('change', eventObject);
+    NumberOfEventsWrapper.find('.number-of-events').simulate(
+      'change',
+      eventObject
+    );
     expect(NumberOfEventsWrapper.state('number')).toBe('23');
   });
-
 });
