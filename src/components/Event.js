@@ -30,7 +30,7 @@ export class Event extends Component {
         {show && (
           <div className="detail-info">
             <div className="event-yes_rsvp_count">
-              Venue: {event.venue.name}
+              Venue: {event.venue && event.venue.name}
             </div>
             <div className="event-local_date">Date: {event.local_date}</div>
             <div className="going">RSVP: {event.yes_rsvp_count}</div>

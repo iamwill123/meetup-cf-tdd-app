@@ -36,6 +36,7 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "gh-pages": "^2.0.1",
-    "jest-cucumber": "^2.0.11"
+    "jest-cucumber": "^2.0.11",
+    "puppeteer": "^1.19.0"
   }
 }
