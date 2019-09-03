@@ -67,3 +67,9 @@ https://json-to-js.com
 
 Jest mocks:
 https://medium.com/@rickhanlonii/understanding-jest-mocks-f0046c68e53c
+
+## BDD process diagram
+
+## End to end testing
+- https://github.com/GoogleChrome/puppeteer/blob/v1.15.0/docs/api.md#pagetypeselector-text-options
+- `yarn start` and `yarn test` in 2 different terminals
