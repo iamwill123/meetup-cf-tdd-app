@@ -6,13 +6,15 @@ class EventList extends Component {
     const { events } = this.props;
     if (!events || events.length === 0) return <div>Loading...</div>;
     return (
-      <ul className="EventList">
-        {events.map(event => (
-          <li key={event.lat || event.id}>
-            <Event event={event} />
-          </li>
-        ))}
-      </ul>
+      <div className="row">
+        <ul className="EventList">
+          {events.map(event => (
+            <li key={event.lat || event.id}>
+              <Event event={event} />
+            </li>
+          ))}
+        </ul>
+      </div>
     );
   }
 }

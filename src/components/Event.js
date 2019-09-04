@@ -22,25 +22,27 @@ export class Event extends Component {
     if (!event) return <div>Loading...</div>;
 
     return (
-      <div className="Event">
-        <div className="name">Event: {event.name}</div>
-        <button className="details-btn" onClick={this.handleItemClick}>
-          {!show ? 'Details' : 'Hide'}
-        </button>
-        {show && (
-          <div className="detail-info">
-            <div className="event-yes_rsvp_count">
-              Venue: {event.venue && event.venue.name}
+      <div className="column">
+        <div className="Event">
+          <div className="name">Event: {event.name}</div>
+          <button className="details-btn" onClick={this.handleItemClick}>
+            {!show ? 'Details' : 'Hide'}
+          </button>
+          {show && (
+            <div className="detail-info">
+              <div className="event-yes_rsvp_count">
+                Venue: {event.venue && event.venue.name}
+              </div>
+              <div className="event-local_date">Date: {event.local_date}</div>
+              <div className="going">RSVP: {event.yes_rsvp_count}</div>
+              <div
+                className="description"
+                dangerouslySetInnerHTML={{ __html: event.description }}
+              />
+              >
             </div>
-            <div className="event-local_date">Date: {event.local_date}</div>
-            <div className="going">RSVP: {event.yes_rsvp_count}</div>
-            <div
-              className="description"
-              dangerouslySetInnerHTML={{ __html: event.description }}
-            />
-            >
-          </div>
-        )}
+          )}
+        </div>
       </div>
     );
   }
