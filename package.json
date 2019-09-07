@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://iamwill123.github.io/meetup-cf-tdd-app",
   "dependencies": {
+    "atatus-js": "^3.1.1",
     "axios": "^0.19.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
