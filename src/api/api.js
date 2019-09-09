@@ -92,6 +92,11 @@ async function getEvents(lat, lon, page) {
     return mockEvents.events;
   }
 
+  if (!navigator.onLine) {
+    const events = localStorage.getItem('lastEvents');
+    return JSON.parse(events);
+  }
+
   const token = await getAccessToken();
 
   if (token) {
