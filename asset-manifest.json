@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/meetup-cf-tdd-app/static/css/main.b190bd17.chunk.css",
-    "main.js": "/meetup-cf-tdd-app/static/js/main.506f04d8.chunk.js",
-    "main.js.map": "/meetup-cf-tdd-app/static/js/main.506f04d8.chunk.js.map",
+    "main.js": "/meetup-cf-tdd-app/static/js/main.cfa156c0.chunk.js",
+    "main.js.map": "/meetup-cf-tdd-app/static/js/main.cfa156c0.chunk.js.map",
     "runtime~main.js": "/meetup-cf-tdd-app/static/js/runtime~main.0ae094fb.js",
     "runtime~main.js.map": "/meetup-cf-tdd-app/static/js/runtime~main.0ae094fb.js.map",
     "static/js/2.7741fb28.chunk.js": "/meetup-cf-tdd-app/static/js/2.7741fb28.chunk.js",
     "static/js/2.7741fb28.chunk.js.map": "/meetup-cf-tdd-app/static/js/2.7741fb28.chunk.js.map",
     "index.html": "/meetup-cf-tdd-app/index.html",
-    "precache-manifest.65b1517ecdca0c9684144da28fc57caf.js": "/meetup-cf-tdd-app/precache-manifest.65b1517ecdca0c9684144da28fc57caf.js",
+    "precache-manifest.e5590f4ae3f5f95a3da3ae999ac5c5f2.js": "/meetup-cf-tdd-app/precache-manifest.e5590f4ae3f5f95a3da3ae999ac5c5f2.js",
     "service-worker.js": "/meetup-cf-tdd-app/service-worker.js",
     "static/css/main.b190bd17.chunk.css.map": "/meetup-cf-tdd-app/static/css/main.b190bd17.chunk.css.map"
   }
