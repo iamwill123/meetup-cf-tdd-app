@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getSuggestionsData } from '../api/api';
+import { InfoAlert } from './Alert';
 
 // FEATURE 1: FILTER EVENTS BY CITY
 // Scenario 1: By default, when user hasn’t searched for a city, show upcoming events based on the user’s location.
@@ -8,14 +9,24 @@ import { getSuggestionsData } from '../api/api';
 class CitySearch extends Component {
   state = {
     query: '',
-    suggestions: []
+    suggestions: [],
+    infoText: ''
   };
 
   handleInputChange = event => {
     const query = event.target.value;
     this.setState({ query });
     getSuggestionsData(query).then(suggestions => {
-      this.setState({ suggestions });
+      if (query && suggestions.length === 0) {
+        this.setState({
+          infoText: 'No city found, please try another city.'
+        });
+      } else {
+        this.setState({
+          suggestions,
+          infoText: ''
+        });
+      }
     });
   };
 
@@ -28,11 +39,13 @@ class CitySearch extends Component {
   };
 
   render() {
-    const { query, suggestions } = this.state;
+    const { query, suggestions, infoText } = this.state;
+
     if (!suggestions) return 'loading suggestions...';
 
     return (
       <div className="CitySearch">
+        <InfoAlert text={infoText} />
         <input
           type="text"
           className="city"
