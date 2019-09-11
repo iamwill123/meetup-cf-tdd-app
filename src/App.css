@@ -153,6 +153,6 @@ input[type='number'] {
 
 .number-of-events {
   width: 80px;
-  margin: 20px 0 50px;
+  margin: 1% auto;
   text-align: right;
 }
